@@ -1,50 +1,42 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Petstore Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. API-First Design
+All features MUST expose functionality through RESTful APIs before UI implementation. API contracts defined first, validated via integration tests, then consumed by React frontend. Enables independent frontend/backend development and third-party integrations.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Database-Driven Reliability
+Postgres is the single source of truth for all persistent data. Transactional integrity MUST be enforced at database level. Migrations MUST be version-controlled and reversible. Data consistency non-negotiable; no eventual consistency shortcuts without explicit architectural justification.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Component-Based UI Architecture
+React components MUST be: self-contained, reusable, styled consistently with Tailwind CSS. Component library approach enforced. MUI components adopted for complex forms/tables. Props validation required; no deeply nested prop drilling. Components tested independently before integration.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Test-First Development (NON-NEGOTIABLE)
+Test-Driven Development mandatory: unit tests for all backend business logic and frontend components, integration tests for API contracts, end-to-end tests for critical user journeys. Test failure blocks deployment; no exceptions.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Observability & Monitoring
+Structured logging required for all backend services (Spring Boot). Request/response tracing enabled. Deployment monitoring configured in Render with alerting for failures. Performance metrics tracked; response times benchmarked and enforced.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Technology Stack & Standards
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**Backend**: Java Spring Boot (latest stable) with Spring Data JPA for ORM and Spring Security for authentication.
+**Database**: PostgreSQL with Flyway migrations for schema management.
+**Frontend**: React with functional components and hooks; Tailwind CSS for styling; Material-UI for enterprise components.
+**Deployment**: Containerized via Docker; deployed to Render with automatic CI/CD on main branch.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+All dependencies locked via Maven (backend) and package-lock.json (frontend). Security scanning required on all dependencies; vulnerabilities MUST be patched within 48 hours.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow & Quality Gates
+
+**Branching**: Feature branches from `main`, named `feature/<issue-id>-<description>`.
+**Code Review**: All PRs require at least one approval before merge. Review checklist MUST verify: test coverage >80%, API contracts documented, database migrations reviewed, security implications assessed.
+**Deployment**: Merge to `main` triggers automated build, test suite, and deployment to Render staging. Manual promotion to production after health checks.
+**Versioning**: Semantic versioning (MAJOR.MINOR.PATCH). MAJOR for breaking API/schema changes, MINOR for new features, PATCH for bug fixes.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+The Petstore Constitution supersedes all informal practices and guidelines. Amendments require documented rationale and team consensus. Constitution reviewed quarterly; changes logged with version bumps per semantic versioning rules above. All team members responsible for enforcement; violations escalated to tech lead.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Compliance verified in PR reviews and deployment gates. Deviations from principles MUST be documented with explicit trade-off justification in commit messages or ADR files.
+
+**Version**: 1.0.0 | **Ratified**: 2026-05-05 | **Last Amended**: 2026-05-05
