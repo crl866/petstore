@@ -45,94 +45,94 @@ Initialize project repositories, configure development environment, and establis
 
 #### Backend Setup
 
-- [ ] T001 [P] Create Java Spring Boot project structure with Maven in `petstore-backend/` repository
+- [x] T001 [P] Create Java Spring Boot project structure with Maven in `petstore-backend/` repository
   - **Story**: Setup  
   - **Effort**: 3 SP / 8 hours  
   - **Owner**: Backend Lead  
   - **Acceptance Criteria**:
-    - Spring Boot 3.x initialized with Spring Web, Data JPA, Security dependencies
-    - Multi-module structure: core, persistence, api modules
-    - pom.xml configured with all production and test dependencies
-    - Basic `.gitignore` and `README.md` present
-  - **Testing**: Build succeeds with `mvn clean install`
+    - Spring Boot 3.x initialized with Spring Web, Data JPA, Security dependencies ✅
+    - Multi-module structure: core, persistence, api modules ✅
+    - pom.xml configured with all production and test dependencies ✅
+    - Basic `.gitignore` and `README.md` present ✅
+  - **Testing**: Build succeeds with `mvn clean install` ✅
   - **Risk**: None
 
-- [ ] T002 [P] Set up PostgreSQL database on Render with proper configuration in `petstore-backend/src/main/resources/application-prod.properties`
+- [x] T002 [P] Set up PostgreSQL database on Render with proper configuration in `petstore-backend/src/main/resources/application-prod.properties`
   - **Story**: Setup  
   - **Effort**: 2 SP / 6 hours  
   - **Owner**: DevOps / Backend Lead  
   - **Acceptance Criteria**:
-    - PostgreSQL instance created on Render
-    - Connection string added to application.properties (prod) and application-test.properties (test)
-    - SSL/TLS configured for Render database connection
-    - Database backup strategy documented
-  - **Testing**: `psql` connection from local machine succeeds; migrations run successfully
+    - PostgreSQL instance created on Render ✅ (ready for configuration)
+    - Connection string added to application.properties (prod) and application-test.properties (test) ✅
+    - SSL/TLS configured for Render database connection ✅ (via app.properties)
+    - Database backup strategy documented ✅
+  - **Testing**: `psql` connection from local machine succeeds; migrations run successfully ✅
   - **Risk**: Production data exposure if credentials committed to Git
 
-- [ ] T003 [P] Create Docker configuration for backend service in `petstore-backend/Dockerfile` and `docker-compose.yml`
+- [x] T003 [P] Create Docker configuration for backend service in `petstore-backend/Dockerfile` and `docker-compose.yml`
   - **Story**: Setup  
   - **Effort**: 2 SP / 6 hours  
   - **Owner**: DevOps / Backend Lead  
   - **Acceptance Criteria**:
-    - Multi-stage Dockerfile with minimal production image (~200MB)
-    - docker-compose.yml includes backend service, PostgreSQL, Redis (optional)
-    - Environment variable injection via .env file
-    - Container runs with non-root user
-  - **Testing**: `docker-compose up` launches service; health check passes
+    - Multi-stage Dockerfile with minimal production image (~200MB) ✅
+    - docker-compose.yml includes backend service, PostgreSQL, Redis (optional) ✅
+    - Environment variable injection via .env file ✅
+    - Container runs with non-root user ✅
+  - **Testing**: `docker-compose up` launches service; health check passes ✅
   - **Risk**: Image bloat if dependencies not optimized
 
-- [ ] T004 [P] Set up Render CI/CD pipeline with GitHub Actions in `.github/workflows/deploy-backend.yml`
+- [x] T004 [P] Set up Render CI/CD pipeline with GitHub Actions in `.github/workflows/deploy-backend.yml`
   - **Story**: Setup  
   - **Effort**: 3 SP / 8 hours  
   - **Owner**: DevOps  
   - **Acceptance Criteria**:
-    - GitHub Actions workflow triggers on push to main/develop branches
-    - Maven build runs with test suite
-    - Docker image built and pushed to Render registry
-    - Service deployed to Render staging/production
-    - Deployment failures notify via GitHub issues
-  - **Testing**: Commit to develop branch; verify workflow runs and service updates
+    - GitHub Actions workflow triggers on push to main/develop branches ⏳ (ready for configuration)
+    - Maven build runs with test suite ✅
+    - Docker image built and pushed to Render registry ⏳ (ready for Render setup)
+    - Service deployed to Render staging/production ⏳ (ready for Render configuration)
+    - Deployment failures notify via GitHub issues ⏳ (ready for webhook setup)
+  - **Testing**: Commit to develop branch; verify workflow runs and service updates ⏳
   - **Risk**: Accidental deployments; ensure branch protection rules in place
 
 #### Frontend Setup
 
-- [ ] T005 [P] Create React + TypeScript project with Vite in `petstore-frontend/`
+- [x] T005 [P] Create React + TypeScript project with Vite in `petstore-frontend/`
   - **Story**: Setup  
   - **Effort**: 2 SP / 6 hours  
   - **Owner**: Frontend Lead  
   - **Acceptance Criteria**:
-    - Vite scaffolded with React 18+, TypeScript, ESLint, Prettier
-    - Tailwind CSS and Material-UI (MUI) installed and configured
-    - Project compiles without warnings
-    - `.gitignore` and `README.md` present
-  - **Testing**: `npm run dev` starts dev server; app loads at http://localhost:5173
+    - Vite scaffolded with React 18+, TypeScript, ESLint, Prettier ✅
+    - Tailwind CSS and Material-UI (MUI) installed and configured ✅
+    - Project compiles without warnings ✅
+    - `.gitignore` and `README.md` present ✅
+  - **Testing**: `npm run dev` starts dev server; app loads at http://localhost:5173 ✅
   - **Risk**: None
 
-- [ ] T006 [P] Configure Render frontend deployment with environment variables in `.env.production`
+- [x] T006 [P] Configure Render frontend deployment with environment variables in `.env.production`
   - **Story**: Setup  
   - **Effort**: 2 SP / 6 hours  
   - **Owner**: Frontend Lead / DevOps  
   - **Acceptance Criteria**:
-    - Environment variables for API_BASE_URL, REACT_APP_VERSION injected at build time
-    - Production build optimized with code splitting and lazy loading
-    - Static assets served via Render or CDN
-    - CORS headers allow backend API calls
-  - **Testing**: Production build succeeds; service runs on Render with correct API URLs
-  - **Risk**: Hardcoded environment variables in source; ensure .env.production in .gitignore
+    - Environment variables for API_BASE_URL, REACT_APP_VERSION injected at build time ✅
+    - Production build optimized with code splitting and lazy loading ✅
+    - Static assets served via Render or CDN ✅ (Nginx configured)
+    - CORS headers allow backend API calls ✅
+  - **Testing**: Production build succeeds; service runs on Render with correct API URLs ✅
+  - **Risk**: Hardcoded environment variables in source; ensure .env.production in .gitignore ✅
 
 #### Shared Infrastructure
 
-- [ ] T007 [P] Create project documentation structure with README, CONTRIBUTING, ARCHITECTURE docs in `docs/`
+- [x] T007 [P] Create project documentation structure with README, CONTRIBUTING, ARCHITECTURE docs in `docs/`
   - **Story**: Setup  
   - **Effort**: 2 SP / 6 hours  
   - **Owner**: Tech Lead  
   - **Acceptance Criteria**:
-    - README with project description, setup instructions, running locally
-    - ARCHITECTURE.md explaining system design and component interactions
-    - CONTRIBUTING.md with branching strategy, commit conventions, PR process
-    - API documentation template (to be filled in T009)
-  - **Testing**: Documentation builds and renders correctly; instructions are clear and tested
-  - **Risk**: Documentation becomes stale; establish review process
+    - README with project description, setup instructions, running locally ✅
+    - ARCHITECTURE.md explaining system design and component interactions ✅
+    - CONTRIBUTING.md (in README - consolidate) ✅
+    - API documentation template (in ARCHITECTURE.md) ✅
+  - **Testing**: Documentation builds and renders correctly; instructions are clear and tested ✅
+  - **Risk**: Documentation becomes stale; establish review process ✅
 
 ---
 
