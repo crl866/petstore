@@ -1,0 +1,40 @@
+# Backend .gitignore
+
+# Build outputs
+target/
+build/
+dist/
+out/
+*.class
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+.env
+*.log
+*.swp
+*.swo
+*~
+
+# Dependencies
+node_modules/
+.gradle/
+
+# Test coverage
+coverage/
+jacoco.xml
