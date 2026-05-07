@@ -3,7 +3,7 @@ import { PetFilterProvider } from '../context/PetFilterContext';
 import { CategorySidebar } from '../components/CategorySidebar';
 import { PetGrid } from '../components/PetGrid';
 
-export const StorefrontPage: React.FC = () => {
+const StorefrontPage: React.FC = () => {
   return (
     <PetFilterProvider>
       <div className="max-w-7xl mx-auto py-8 px-4">
@@ -19,3 +19,5 @@ export const StorefrontPage: React.FC = () => {
     </PetFilterProvider>
   );
 };
+
+export default StorefrontPage;

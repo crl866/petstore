@@ -11,7 +11,7 @@ import {
   Alert,
   Divider,
 } from '@mui/material';
-import PhotoGallery from '../components/PhotoGallery';
+import { PhotoGallery } from '../components/PhotoGallery';
 import { petApi } from '../services/apiClient';
 import { useCart, Pet } from '../context/CartContext';
 
