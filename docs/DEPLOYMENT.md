@@ -47,7 +47,16 @@ You can test the API with:
 
 ## 6. Frontend later
 
-Once the backend is live, deploy the frontend as a separate Render static site or web service and set `VITE_API_BASE_URL` to the backend URL.
+Once the backend is live, Render will also create the frontend static site from `petstore-frontend`.
+
+The frontend expects:
+
+- build command: `npm ci && npm run build`
+- publish directory: `dist`
+- `VITE_API_BASE_URL` set to the backend URL
+- SPA rewrite to `/index.html` for React Router paths
+
+If your backend URL is not `https://petstore-backend.onrender.com`, update the frontend env var in Render to match the real backend URL.
 
 ## 7. If Render still errors
 
