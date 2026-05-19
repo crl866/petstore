@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: petstore-backend
+    runtime: docker
+    rootDir: petstore-backend
+    dockerContext: petstore-backend
+    dockerfilePath: petstore-backend/Dockerfile
+    healthCheckPath: /david/api/v1/pets
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: petstore-postgres
+          property: connectionString
+      - key: DATABASE_USER
+        fromDatabase:
+          name: petstore-postgres
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: petstore-postgres
+          property: password
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+
+databases:
+  - name: petstore-postgres
+    databaseName: petstore
+    user: petstore
