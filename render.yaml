@@ -23,7 +23,8 @@ services:
         value: prod
 
   - type: static
-    name: petstore-frontend
+    name: petstore-frontendd
+    runtime: static
     rootDir: petstore-frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
