@@ -21,6 +21,8 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/api/v1/pets/**").permitAll()
+                .requestMatchers("/api/v1/categories/**").permitAll()
                 .requestMatchers("/david/api/v1/pets/**").permitAll()
                 .requestMatchers("/david/api/v1/categories/**").permitAll()
                 .requestMatchers("/david/api-docs/**").permitAll()
@@ -34,7 +36,12 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:5173", "*"));
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:3000",
+            "http://localhost:5173",
+            "https://petstore-frontendd.onrender.com",
+            "https://petstore-front-end.onrender.com"
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(false);
