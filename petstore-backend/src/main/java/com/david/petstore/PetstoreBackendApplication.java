@@ -21,6 +21,21 @@ public class PetstoreBackendApplication {
     }
 
     private static void configureDatasourceFromEnvironment() {
+        boolean hasDatasourceEnv = hasText(System.getenv("SPRING_DATASOURCE_URL"))
+                || hasText(System.getenv("DATABASE_URL"))
+                || hasText(System.getenv("PGHOST"))
+                || hasText(System.getenv("PGDATABASE"));
+
+        if (!hasDatasourceEnv) {
+            System.setProperty("spring.autoconfigure.exclude",
+                    "org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration," +
+                            "org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration," +
+                            "org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration");
+            System.setProperty("spring.jpa.hibernate.ddl-auto", "none");
+            System.setProperty("spring.flyway.enabled", "false");
+            return;
+        }
+
         if (hasText(System.getenv("SPRING_DATASOURCE_URL"))) {
             return;
         }
