@@ -26,7 +26,7 @@ services:
     name: petstore-frontendd
     runtime: static
     rootDir: petstore-frontend
-    buildCommand: npm ci && npm run build
+    buildCommand: if [ -f package.json ]; then npm install && npm run build; else cd petstore-frontend && npm install && npm run build; fi
     staticPublishPath: dist
     routes:
       - type: rewrite
