@@ -11,7 +11,7 @@ RUN mvn -f pom.xml dependency:go-offline
 COPY petstore-backend/src ./src
 RUN mvn -f pom.xml clean package -DskipTests
 
-FROM eclipse-temurin:17-jre-slim
+FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
