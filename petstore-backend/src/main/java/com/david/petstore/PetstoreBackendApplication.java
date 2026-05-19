@@ -31,11 +31,11 @@ public class PetstoreBackendApplication {
                 || hasText(System.getenv("PGDATABASE"));
 
         if (!hasDatasourceEnv) {
-            System.setProperty("spring.autoconfigure.exclude",
-                    "org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration," +
-                            "org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration," +
-                            "org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration");
-            System.setProperty("spring.jpa.hibernate.ddl-auto", "none");
+            System.setProperty("spring.datasource.url", "jdbc:h2:mem:petstore;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
+            System.setProperty("spring.datasource.driver-class-name", "org.h2.Driver");
+            System.setProperty("spring.datasource.username", "sa");
+            System.setProperty("spring.datasource.password", "");
+            System.setProperty("spring.jpa.hibernate.ddl-auto", "update");
             System.setProperty("spring.flyway.enabled", "false");
             return;
         }
