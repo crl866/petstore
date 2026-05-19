@@ -11,6 +11,12 @@ import org.springframework.cache.annotation.EnableCaching;
 public class PetstoreBackendApplication {
     public static void main(String[] args) {
         configureDatasourceFromEnvironment();
+        // Print resolved DB configuration for debugging in deploy logs
+        String envDb = System.getenv("DATABASE_URL");
+        String resolved = System.getProperty("spring.datasource.url");
+        System.out.println("[startup] DATABASE_URL env: " + (envDb == null ? "<null>" : envDb));
+        System.out.println("[startup] Resolved spring.datasource.url: " + (resolved == null ? "<null>" : resolved));
+
         SpringApplication.run(PetstoreBackendApplication.class, args);
     }
 
