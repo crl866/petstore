@@ -13,7 +13,8 @@ import {
 } from '@mui/material';
 import { PhotoGallery } from '../components/PhotoGallery';
 import { petApi } from '../services/apiClient';
-import { useCart, Pet } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
+import { Pet } from '../types';
 
 const PetDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -85,7 +86,7 @@ const PetDetailPage: React.FC = () => {
       <Grid container spacing={4}>
         {/* Photo Gallery */}
         <Grid item xs={12} md={6}>
-          <PhotoGallery photos={pet.photoUrls} petName={pet.name} />
+          <PhotoGallery photos={pet.photos} petName={pet.name} />
         </Grid>
 
         {/* Details */}
@@ -95,7 +96,7 @@ const PetDetailPage: React.FC = () => {
           </Typography>
 
           <Typography variant="subtitle1" color="textSecondary" sx={{ mb: 2 }}>
-            {pet.breed ? `${pet.breed} • ${pet.species}` : pet.species}
+            {pet.breed ? `${pet.breed} • ${pet.category.name}` : pet.category.name}
           </Typography>
 
           {pet.age && (
@@ -104,24 +105,19 @@ const PetDetailPage: React.FC = () => {
             </Typography>
           )}
 
-          {pet.categoryName && (
+          {pet.category && (
             <Typography variant="body1" sx={{ mb: 2 }}>
               <strong>Category:</strong> {pet.categoryName}
             </Typography>
           )}
 
-          {pet.healthStatus && (
+          {pet.healthStatuses && pet.healthStatuses.length > 0 && (
             <Box sx={{ mb: 2 }}>
               <Chip
-                label={pet.healthStatus}
-                color={getHealthStatusColor(pet.healthStatus)}
+                label={pet.healthStatuses[0].status}
+                color={getHealthStatusColor(pet.healthStatuses[0].status)}
                 variant="outlined"
               />
-              {pet.healthStatusNotes && (
-                <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
-                  {pet.healthStatusNotes}
-                </Typography>
-              )}
             </Box>
           )}
 
@@ -132,7 +128,7 @@ const PetDetailPage: React.FC = () => {
           </Typography>
 
           <Typography variant="body1" paragraph>
-            {pet.bio}
+            {pet.description}
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>

@@ -13,6 +13,8 @@ const categories = [
   { id: 4, name: 'Fish' }
 ];
 
+const makeAnimalPhoto = (kind, lock) => `https://loremflickr.com/640/480/${kind}?lock=${lock}`;
+
 const pets = [
   {
     id: 1,
@@ -24,8 +26,8 @@ const pets = [
     category: { id: 1, name: 'Dogs' },
     healthStatuses: [{ id: 1, status: 'vaccinated', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 1, photoUrl: 'https://images.unsplash.com/photo-1633722715463-d30628cff4a5?w=400', displayOrder: 1 },
-      { id: 2, photoUrl: 'https://images.unsplash.com/photo-1611003228941-98852ba62227?w=400', displayOrder: 2 }
+      { id: 1, photoUrl: makeAnimalPhoto('dog', 101), displayOrder: 1 },
+      { id: 2, photoUrl: makeAnimalPhoto('dog', 102), displayOrder: 2 }
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
@@ -40,8 +42,8 @@ const pets = [
     category: { id: 2, name: 'Cats' },
     healthStatuses: [{ id: 2, status: 'vaccinated', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 3, photoUrl: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400', displayOrder: 1 },
-      { id: 4, photoUrl: 'https://images.unsplash.com/photo-1591133573892-8a28eda01a3e?w=400', displayOrder: 2 }
+      { id: 3, photoUrl: makeAnimalPhoto('cat', 201), displayOrder: 1 },
+      { id: 4, photoUrl: makeAnimalPhoto('cat', 202), displayOrder: 2 }
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
@@ -56,7 +58,7 @@ const pets = [
     category: { id: 3, name: 'Birds' },
     healthStatuses: [{ id: 3, status: 'healthy', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 5, photoUrl: 'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400', displayOrder: 1 }
+      { id: 5, photoUrl: makeAnimalPhoto('bird', 301), displayOrder: 1 }
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
@@ -71,7 +73,7 @@ const pets = [
     category: { id: 4, name: 'Fish' },
     healthStatuses: [{ id: 4, status: 'healthy', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 6, photoUrl: 'https://images.unsplash.com/photo-1576149192919-7dd142d898b2?w=400', displayOrder: 1 }
+      { id: 6, photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e9/Goldfish3.jpg', displayOrder: 1 }
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
@@ -86,7 +88,7 @@ const pets = [
     category: { id: 1, name: 'Dogs' },
     healthStatuses: [{ id: 5, status: 'vaccinated', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 7, photoUrl: 'https://images.unsplash.com/photo-1587300411515-fef2d60f5ed3?w=400', displayOrder: 1 }
+      { id: 7, photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/dc/Greatdane.jpg', displayOrder: 1 }
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
@@ -101,7 +103,7 @@ const pets = [
     category: { id: 2, name: 'Cats' },
     healthStatuses: [{ id: 6, status: 'vaccinated', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 8, photoUrl: 'https://images.unsplash.com/photo-1606214174585-fe31582dc1d4?w=400', displayOrder: 1 }
+      { id: 8, photoUrl: makeAnimalPhoto('cat', 203), displayOrder: 1 }
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()

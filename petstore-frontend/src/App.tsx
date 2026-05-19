@@ -36,7 +36,7 @@ function App() {
             <main style={{ flex: 1 }}>
               <Routes>
                 <Route path="/" element={<StorefrontPage />} />
-                <Route path="/pet/:id" element={<PetDetailPage />} />
+                <Route path="/pets/:id" element={<PetDetailPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/adoption-form" element={<AdoptionFormPage />} />
                 <Route path="/admin" element={<AdminDashboardPage />} />

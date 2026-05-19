@@ -20,7 +20,9 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos, petName }) =
     setActiveIndex((prevStep) => (prevStep - 1 + maxSteps) % maxSteps);
   };
 
-  const currentPhoto = photos[activeIndex]?.photoUrl || 'https://via.placeholder.com/600x400?text=No+Image';
+  const currentPhoto =
+    photos[activeIndex]?.photoUrl ||
+    'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
 
   return (
     <div className="w-full">
@@ -31,7 +33,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos, petName }) =
           className="max-h-full max-w-full object-contain"
           onError={(e) => {
             (e.target as HTMLImageElement).src =
-              'https://via.placeholder.com/600x400?text=No+Image';
+              'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
           }}
         />
 
@@ -78,7 +80,7 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos, petName }) =
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src =
-                    'https://via.placeholder.com/80x80?text=No+Image';
+                    'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
                 }}
               />
             </button>

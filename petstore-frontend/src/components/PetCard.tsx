@@ -16,7 +16,7 @@ export const PetCard: React.FC<PetCardProps> = ({ pet }) => {
   const imageUrl =
     pet.photos && pet.photos.length > 0
       ? pet.photos[0].photoUrl
-      : 'https://via.placeholder.com/300x200?text=No+Image';
+      : 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
 
   return (
     <div
@@ -30,7 +30,7 @@ export const PetCard: React.FC<PetCardProps> = ({ pet }) => {
           className="w-full h-full object-cover"
           onError={(e) => {
             (e.target as HTMLImageElement).src =
-              'https://via.placeholder.com/300x200?text=No+Image';
+              'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
           }}
         />
       </div>
