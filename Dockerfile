@@ -6,7 +6,6 @@ FROM maven:3.9.4-eclipse-temurin-17 AS builder
 WORKDIR /app
 
 COPY petstore-backend/pom.xml ./pom.xml
-RUN mvn -f pom.xml dependency:go-offline
 
 COPY petstore-backend/src ./src
 RUN mvn -f pom.xml clean package -DskipTests
