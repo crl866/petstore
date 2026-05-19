@@ -30,6 +30,11 @@ The backend receives these values automatically from the Render database:
 - `DATABASE_PASSWORD`
 - `SPRING_PROFILES_ACTIVE=prod`
 
+The backend now accepts Render `DATABASE_URL` in both formats:
+
+- `jdbc:postgresql://...`
+- `postgres://...` or `postgresql://...` (auto-converted at startup)
+
 ## 5. Backend URL
 
 After deployment, copy the backend URL from Render, for example:
