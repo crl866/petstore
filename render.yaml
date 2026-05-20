@@ -5,7 +5,7 @@ services:
     rootDir: petstore-backend
     dockerContext: petstore-backend
     dockerfilePath: petstore-backend/Dockerfile
-    healthCheckPath: /david/api/v1/pets
+    healthCheckPath: /api/v1/health
     envVars:
       - key: DATABASE_URL
         fromDatabase:

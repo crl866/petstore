@@ -10,6 +10,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -36,12 +37,20 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:3000",
-            "http://localhost:5173",
-            "https://petstore-frontendd.onrender.com",
-            "https://petstore-front-end.onrender.com"
-        ));
+        String corsAllowedOrigins = System.getenv("CORS_ALLOWED_ORIGINS");
+        if (corsAllowedOrigins != null && !corsAllowedOrigins.trim().isEmpty()) {
+            configuration.setAllowedOrigins(Arrays.stream(corsAllowedOrigins.split(","))
+                    .map(String::trim)
+                    .filter(origin -> !origin.isEmpty())
+                    .toList());
+        } else {
+            configuration.setAllowedOrigins(List.of(
+                    "http://localhost:3000",
+                    "http://localhost:5173",
+                    "https://petstore-frontendd.onrender.com",
+                    "https://petstore-front-end.onrender.com"
+            ));
+        }
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(false);
