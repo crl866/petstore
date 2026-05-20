@@ -23,7 +23,7 @@ public class PetService {
     private final HealthStatusRepository healthStatusRepository;
 
     public List<PetDTO> getAllPets() {
-        return petRepository.findAllWithDetails().stream()
+        return petRepository.findAll().stream()
             .map(this::convertToDTO)
             .collect(Collectors.toList());
     }
