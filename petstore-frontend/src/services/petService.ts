@@ -1,15 +1,10 @@
-import axios from 'axios';
+import { apiClient } from './apiClient';
 import { Category, Pet, ApiResponse } from '../types';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
-const API_ENDPOINT = `${API_BASE_URL}/david/api/v1`;
 
 export const petService = {
   fetchAllCategories: async (): Promise<Category[]> => {
     try {
-      const response = await axios.get<ApiResponse<Category[]>>(
-        `${API_ENDPOINT}/categories`
-      );
+      const response = await apiClient.get<ApiResponse<Category[]>>('/categories');
       return response.data.data;
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -20,9 +15,9 @@ export const petService = {
   fetchAllPets: async (categoryId?: number): Promise<Pet[]> => {
     try {
       const url = categoryId
-        ? `${API_ENDPOINT}/pets?categoryId=${categoryId}`
-        : `${API_ENDPOINT}/pets`;
-      const response = await axios.get<ApiResponse<Pet[]>>(url);
+        ? `/pets?categoryId=${categoryId}`
+        : '/pets';
+      const response = await apiClient.get<ApiResponse<Pet[]>>(url);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching pets:', error);
@@ -32,9 +27,7 @@ export const petService = {
 
   fetchPetDetail: async (petId: number): Promise<Pet> => {
     try {
-      const response = await axios.get<ApiResponse<Pet>>(
-        `${API_ENDPOINT}/pets/${petId}`
-      );
+      const response = await apiClient.get<ApiResponse<Pet>>(`/pets/${petId}`);
       return response.data.data;
     } catch (error) {
       console.error('Error fetching pet detail:', error);
