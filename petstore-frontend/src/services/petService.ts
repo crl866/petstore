@@ -1,11 +1,23 @@
 import { apiClient } from './apiClient';
 import { Category, Pet, ApiResponse } from '../types';
 
+const asList = <T>(payload: T[] | { content?: T[] } | null | undefined): T[] => {
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  if (payload && Array.isArray((payload as { content?: T[] }).content)) {
+    return (payload as { content?: T[] }).content ?? [];
+  }
+
+  return [];
+};
+
 export const petService = {
   fetchAllCategories: async (): Promise<Category[]> => {
     try {
       const response = await apiClient.get<ApiResponse<Category[]>>('/categories');
-      return response.data.data;
+      return asList(response.data.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
       throw error;
@@ -18,7 +30,7 @@ export const petService = {
         ? `/pets?categoryId=${categoryId}`
         : '/pets';
       const response = await apiClient.get<ApiResponse<Pet[]>>(url);
-      return response.data.data;
+      return asList(response.data.data);
     } catch (error) {
       console.error('Error fetching pets:', error);
       throw error;

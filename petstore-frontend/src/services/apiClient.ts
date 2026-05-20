@@ -5,8 +5,12 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001
 // Normalize base URL: remove any trailing slashes to avoid double-slash in requests
 const normalizedBase = API_BASE_URL.replace(/\/+$/, '');
 
+// In development use the Vite proxy by hitting the relative `/api/v1` path.
+// This avoids CORS when the frontend dev server is running on localhost.
+const baseURL = import.meta.env.DEV ? '/api/v1' : `${normalizedBase}/api/v1`;
+
 export const apiClient: AxiosInstance = axios.create({
-  baseURL: `${normalizedBase}/api/v1`,
+  baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
