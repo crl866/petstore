@@ -135,7 +135,9 @@ public class AdminPetController {
                 .orElseThrow(() -> new RuntimeException("Pet not found with ID: " + id));
 
         HealthStatus healthStatus = healthStatusRepository.findByPetId(id)
-                .orElse(new HealthStatus());
+            .stream()
+            .findFirst()
+            .orElseGet(HealthStatus::new);
 
         healthStatus.setPet(pet);
         healthStatus.setStatus(healthStatusUpdate.getStatus());
@@ -144,7 +146,7 @@ public class AdminPetController {
         }
 
         healthStatusRepository.save(healthStatus);
-        pet.setHealthStatus(healthStatus);
+        pet.getHealthStatuses().add(0, healthStatus);
         petRepository.save(pet);
 
         PetDTO dto = convertToDTO(pet);
@@ -164,9 +166,12 @@ public class AdminPetController {
 
         String healthStatus = null;
         String healthStatusNotes = null;
-        if (pet.getHealthStatus() != null) {
-            healthStatus = pet.getHealthStatus().getStatus().getDisplayName();
-            healthStatusNotes = pet.getHealthStatus().getNotes();
+        if (pet.getHealthStatuses() != null && !pet.getHealthStatuses().isEmpty()) {
+            HealthStatus latestHealthStatus = pet.getHealthStatuses().get(0);
+            healthStatus = latestHealthStatus.getStatus() != null
+                    ? latestHealthStatus.getStatus().getDisplayName()
+                    : null;
+            healthStatusNotes = latestHealthStatus.getNotes();
         }
 
         return PetDTO.builder()

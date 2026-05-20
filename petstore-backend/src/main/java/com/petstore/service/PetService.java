@@ -103,9 +103,12 @@ public class PetService {
 
         String healthStatus = null;
         String healthStatusNotes = null;
-        if (pet.getHealthStatus() != null) {
-            healthStatus = pet.getHealthStatus().getStatus().getDisplayName();
-            healthStatusNotes = pet.getHealthStatus().getNotes();
+        if (pet.getHealthStatuses() != null && !pet.getHealthStatuses().isEmpty()) {
+            var latestHealthStatus = pet.getHealthStatuses().get(0);
+            healthStatus = latestHealthStatus.getStatus() != null
+                ? latestHealthStatus.getStatus().getDisplayName()
+                : null;
+            healthStatusNotes = latestHealthStatus.getNotes();
         }
 
         return PetDTO.builder()

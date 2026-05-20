@@ -48,8 +48,10 @@ public class Pet {
     @Builder.Default
     private List<PetPhoto> photos = new ArrayList<>();
 
-    @OneToOne(mappedBy = "pet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private HealthStatus healthStatus;
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OrderBy("updatedAt DESC")
+    @Builder.Default
+    private List<HealthStatus> healthStatuses = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
