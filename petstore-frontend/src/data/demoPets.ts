@@ -38,7 +38,7 @@ const demoPets: Pet[] = [
     category: { id: 3, name: 'Fish', description: 'Fish' },
     healthStatuses: [],
     photos: [
-      { id: 3, photoUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
+      { id: 3, photoUrl: 'https://images.unsplash.com/photo-1508182310786-7b6b6f6f6f6f?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
