@@ -10,7 +10,7 @@ const demoPets: Pet[] = [
     category: { id: 1, name: 'Dogs', description: 'Dog' },
     healthStatuses: [{ id: 1, status: 'HEALTHY', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 1, photoUrl: 'https://images.unsplash.com/photo-1633722715463-d30628cbe0d3?w=400', displayOrder: 0 },
+      { id: 1, photoUrl: 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -24,7 +24,7 @@ const demoPets: Pet[] = [
     category: { id: 2, name: 'Cats', description: 'Cat' },
     healthStatuses: [{ id: 2, status: 'VACCINATED', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 2, photoUrl: 'https://images.unsplash.com/photo-1514888286974-6c03bf1a4f8c?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
+      { id: 2, photoUrl: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -38,7 +38,7 @@ const demoPets: Pet[] = [
     category: { id: 3, name: 'Fish', description: 'Fish' },
     healthStatuses: [],
     photos: [
-      { id: 3, photoUrl: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
+      { id: 3, photoUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -52,7 +52,7 @@ const demoPets: Pet[] = [
     category: { id: 4, name: 'Birds', description: 'Bird' },
     healthStatuses: [],
     photos: [
-      { id: 4, photoUrl: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
+      { id: 4, photoUrl: 'https://images.unsplash.com/photo-1501706362039-c6e8091aa82f?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
