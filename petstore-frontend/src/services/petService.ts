@@ -1,5 +1,6 @@
 import { apiClient } from './apiClient';
 import { Category, Pet, ApiResponse } from '../types';
+import demoCategories from '../data/demoCategories';
 
 const asList = <T>(payload: T[] | { content?: T[] } | null | undefined): T[] => {
   if (Array.isArray(payload)) {
@@ -17,7 +18,12 @@ export const petService = {
   fetchAllCategories: async (): Promise<Category[]> => {
     try {
       const response = await apiClient.get<ApiResponse<Category[]>>('/categories');
-      return asList(response.data.data);
+      const list = asList(response.data.data);
+      if (!list || list.length === 0) {
+        console.warn('API returned no categories — using demo fallback');
+        return demoCategories;
+      }
+      return list;
     } catch (error) {
       console.error('Error fetching categories:', error);
       throw error;
