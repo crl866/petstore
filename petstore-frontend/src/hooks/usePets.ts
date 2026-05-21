@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Pet } from '../types';
 import { petService } from '../services/petService';
+import demoPets from '../data/demoPets';
 
 export const usePets = (categoryId?: number | null) => {
   const [pets, setPets] = useState<Pet[]>([]);
@@ -12,7 +13,13 @@ export const usePets = (categoryId?: number | null) => {
       try {
         setLoading(true);
         const data = await petService.fetchAllPets(categoryId || undefined);
-        setPets(data);
+        // If API returns no pets, fallback to local demo data so UI shows examples
+        if (!data || data.length === 0) {
+          console.warn('API returned no pets — using demo fallback');
+          setPets(demoPets.filter((p) => (categoryId ? p.category.id === categoryId : true)));
+        } else {
+          setPets(data);
+        }
         setError(null);
       } catch (err) {
         setError('Failed to load pets');
