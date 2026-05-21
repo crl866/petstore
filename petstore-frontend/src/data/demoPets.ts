@@ -24,7 +24,7 @@ const demoPets: Pet[] = [
     category: { id: 2, name: 'Cats', description: 'Cat' },
     healthStatuses: [{ id: 2, status: 'VACCINATED', createdAt: new Date().toISOString() }],
     photos: [
-      { id: 2, photoUrl: 'https://images.unsplash.com/photo-1514888286974-6c03bf1a4f8c?w=400', displayOrder: 0 },
+      { id: 2, photoUrl: 'https://images.unsplash.com/photo-1514888286974-6c03bf1a4f8c?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
     ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -37,7 +37,9 @@ const demoPets: Pet[] = [
     description: 'Goldfish, 3 inches',
     category: { id: 3, name: 'Fish', description: 'Fish' },
     healthStatuses: [],
-    photos: [],
+    photos: [
+      { id: 3, photoUrl: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
+    ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -49,7 +51,9 @@ const demoPets: Pet[] = [
     description: 'Parrot with bright feathers',
     category: { id: 4, name: 'Birds', description: 'Bird' },
     healthStatuses: [],
-    photos: [],
+    photos: [
+      { id: 4, photoUrl: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&auto=format&fit=crop&q=80', displayOrder: 0 },
+    ],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
